@@ -38,12 +38,14 @@
             android:id="@+id/bottom_navigation"
             style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/main_menu_bottom"
             app:itemIconTint="@color/selector_bottom_navigation"
-            app:itemTextColor="@color/selector_bottom_navigation"/>
+            app:itemTextColor="@color/selector_bottom_navigation"
+            android:paddingTop="14dp"
+            android:paddingBottom="12dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
