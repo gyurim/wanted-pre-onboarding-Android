@@ -17,11 +17,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        BuildConfig.DEBUG
 
         val mainViewModel : MainViewModel by viewModels()
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
 
-        mainViewModel.getNews(mapOf("us" to BuildConfig.NEWS_API_KEY))
+        val queries: HashMap<String, String> = HashMap()
+        queries["country"] = "us"
+        queries["apiKey"] = BuildConfig.NEWS_API_KEY
+        mainViewModel.getNews(queries)
     }
 }
