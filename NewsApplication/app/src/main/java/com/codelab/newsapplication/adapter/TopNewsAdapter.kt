@@ -16,7 +16,7 @@ import com.codelab.newsapplication.model.Article
 import com.codelab.newsapplication.model.News
 import com.codelab.newsapplication.util.BaseDiffUtil
 
-class TopNewsAdapter : RecyclerView.Adapter<TopNewsViewHolder>() {
+class TopNewsAdapter(private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<TopNewsViewHolder>() {
     private var articles = emptyList<Article>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopNewsViewHolder {
@@ -28,6 +28,9 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsViewHolder>() {
     override fun onBindViewHolder(holder: TopNewsViewHolder, position: Int) {
         val item = articles[position]
         holder.bindTo(item)
+        holder.itemView.setOnClickListener {
+            item?.let { itemClickListener.onItemClick(it) }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -54,5 +57,9 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsViewHolder>() {
                 view.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.item_test_image))
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(article: Article)
     }
 }

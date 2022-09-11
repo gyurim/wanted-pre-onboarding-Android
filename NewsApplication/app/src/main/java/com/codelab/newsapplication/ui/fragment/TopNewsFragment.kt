@@ -1,18 +1,20 @@
 package com.codelab.newsapplication.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.codelab.newsapplication.BuildConfig
 import com.codelab.newsapplication.adapter.TopNewsAdapter
 import com.codelab.newsapplication.databinding.FragmentTopNewsBinding
+import com.codelab.newsapplication.model.Article
+import com.codelab.newsapplication.ui.ArticleDetailActivity
 import com.codelab.newsapplication.util.NetworkResult
 import com.codelab.newsapplication.viewmodel.MainViewModel
 import com.codelab.newsapplication.viewmodel.TopNewsViewModel
@@ -23,7 +25,7 @@ import kotlinx.coroutines.launch
 class TopNewsFragment : Fragment() {
     private val mainViewModel: MainViewModel by viewModels()
     private val topNewsViewModel: TopNewsViewModel by viewModels()
-    private val topNewsAdapter by lazy { TopNewsAdapter() }
+    private val topNewsAdapter by lazy { TopNewsAdapter(onItemClickListener()) }
 
     private var _binding: FragmentTopNewsBinding? = null
     private val binding get() = _binding!!
@@ -72,6 +74,15 @@ class TopNewsFragment : Fragment() {
                     }
                 }
             })
+        }
+    }
+
+    private fun onItemClickListener(): TopNewsAdapter.OnItemClickListener {
+        val intent = Intent(this.context, ArticleDetailActivity::class.java)
+        return object : TopNewsAdapter.OnItemClickListener {
+            override fun onItemClick(article: Article) {
+                startActivity(intent)
+            }
         }
     }
 
