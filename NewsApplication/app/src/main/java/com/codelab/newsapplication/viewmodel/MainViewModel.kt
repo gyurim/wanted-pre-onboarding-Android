@@ -1,30 +1,39 @@
-package com.codelab.newsapplication.ui
+package com.codelab.newsapplication.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codelab.newsapplication.data.NewsRepository
 import com.codelab.newsapplication.model.News
+import com.codelab.newsapplication.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor (
     private val repository: NewsRepository
 ) : ViewModel(){
-    private val newsList: MutableLiveData<Result<News>> = MutableLiveData()
+
+    private val _newsList: MutableLiveData<NetworkResult<News>> = MutableLiveData()
+    val newsList: LiveData<NetworkResult<News>> = _newsList
+
     fun getNews(queries: Map<String, String>) = viewModelScope.launch {
-        // for testing
         getNewsSafeCall(queries)
     }
 
     private suspend fun getNewsSafeCall(queries: Map<String, String>) {
-        val response = repository.remote.getNews(queries)
-        newsList.let {
-            Result.success(response.body())
+        try {
+            val response = repository.remote.getNews(queries)
+            if (response.body() != null) {
+                _newsList.value = NetworkResult.Success(response.body())
+                _newsList.value?.data?.let {
+                }
+            }
+        } catch (e: Exception) {
+            _newsList.value = NetworkResult.Error("Error Occurred")
         }
     }
 }

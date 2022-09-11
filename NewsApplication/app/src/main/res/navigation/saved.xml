@@ -6,7 +6,7 @@
     app:startDestination="@id/savedFragment">
 
     <fragment android:id="@+id/savedFragment"
-        android:name="com.codelab.newsapplication.ui.SavedFragment"
+        android:name="com.codelab.newsapplication.ui.fragment.SavedFragment"
         android:label="SavedFragment"
         tools:layout="@layout/fragment_saved"/>
 

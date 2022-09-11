@@ -6,7 +6,7 @@
     app:startDestination="@id/categoriesFragment">
 
     <fragment android:id="@+id/categoriesFragment"
-        android:name="com.codelab.newsapplication.ui.CategoriesFragment"
+        android:name="com.codelab.newsapplication.ui.fragment.CategoriesFragment"
         android:label="CategoriesFragment"
         tools:layout="@layout/fragment_categories"/>
 </navigation>

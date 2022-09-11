@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/topNewsFragment"
-        android:name="com.codelab.newsapplication.ui.TopNewsFragment"
+        android:name="com.codelab.newsapplication.ui.fragment.TopNewsFragment"
         android:label="TopNewsFragment"
         tools:layout="@layout/fragment_top_news"/>
 </navigation>

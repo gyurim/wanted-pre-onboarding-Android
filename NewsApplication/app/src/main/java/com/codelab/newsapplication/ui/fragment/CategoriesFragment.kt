@@ -1,4 +1,4 @@
-package com.codelab.newsapplication.ui
+package com.codelab.newsapplication.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,16 +7,26 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.codelab.newsapplication.R
+import com.codelab.newsapplication.databinding.FragmentCategoriesBinding
 import com.codelab.newsapplication.databinding.FragmentTopNewsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class TopNewsFragment : Fragment() {
+@AndroidEntryPoint
+class CategoriesFragment : Fragment() {
+    private var _binding: FragmentCategoriesBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentTopNewsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_top_news, container, false)
+        val binding: FragmentCategoriesBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false)
         return binding.root
 //        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

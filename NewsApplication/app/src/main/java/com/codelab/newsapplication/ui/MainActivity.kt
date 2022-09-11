@@ -4,15 +4,14 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.codelab.newsapplication.BuildConfig
 import com.codelab.newsapplication.R
-import com.codelab.newsapplication.data.NewsRepository
 import com.codelab.newsapplication.databinding.ActivityMainBinding
+import com.codelab.newsapplication.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,15 +23,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-//        BuildConfig.DEBUG
         val mainViewModel : MainViewModel by viewModels()
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
-
-        val queries: HashMap<String, String> = HashMap()
-        queries["country"] = "us"
-        queries["apiKey"] = BuildConfig.NEWS_API_KEY
-        mainViewModel.getNews(queries)
 
         // Bottom Navigation
         val navHostFragment = supportFragmentManager.findFragmentById(

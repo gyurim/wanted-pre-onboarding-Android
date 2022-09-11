@@ -3,6 +3,7 @@ package com.codelab.newsapplication.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.codelab.newsapplication.data.NewsRepository
+import com.codelab.newsapplication.viewmodel.MainViewModel
 
 class MainViewModelFactory(
     private val repository: NewsRepository
