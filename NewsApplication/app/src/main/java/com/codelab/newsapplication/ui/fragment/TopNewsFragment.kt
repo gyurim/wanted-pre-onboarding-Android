@@ -11,11 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.codelab.newsapplication.BuildConfig
-import com.codelab.newsapplication.R
 import com.codelab.newsapplication.adapter.TopNewsAdapter
 import com.codelab.newsapplication.databinding.FragmentTopNewsBinding
 import com.codelab.newsapplication.util.NetworkResult
-import com.codelab.newsapplication.util.observeOnce
 import com.codelab.newsapplication.viewmodel.MainViewModel
 import com.codelab.newsapplication.viewmodel.TopNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint

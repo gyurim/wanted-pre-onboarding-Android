@@ -17,11 +17,11 @@
             android:id="@+id/item_news_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/item_test_image"
             android:adjustViewBounds="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageFromUrl="@{articleItem.urlToImage}"/>
 
         <TextView
             android:id="@+id/item_news_title"

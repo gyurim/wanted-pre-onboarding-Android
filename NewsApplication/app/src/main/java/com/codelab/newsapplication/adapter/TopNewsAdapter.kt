@@ -3,10 +3,14 @@ package com.codelab.newsapplication.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.codelab.newsapplication.databinding.FragmentTopNewsBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.codelab.newsapplication.R
 import com.codelab.newsapplication.databinding.ItemArticleBinding
 import com.codelab.newsapplication.model.Article
 import com.codelab.newsapplication.model.News
@@ -22,12 +26,11 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: TopNewsViewHolder, position: Int) {
-        val item = articles.get(position)
+        val item = articles[position]
         holder.bindTo(item)
     }
 
     override fun getItemCount(): Int {
-        Log.d("탑 뉴스", articles.size.toString())
         return articles.size
     }
 
@@ -35,9 +38,21 @@ class TopNewsAdapter : RecyclerView.Adapter<TopNewsViewHolder>() {
         val diffUtil = BaseDiffUtil(articles, newsItem.articles)
         val diffUtilResult = DiffUtil.calculateDiff(diffUtil)
         articles = newsItem.articles
-
-        Log.d("뉴스", articles.toString())
-        Log.d("뉴스 개수", articles.size.toString())
         diffUtilResult.dispatchUpdatesTo(this)
+    }
+
+    companion object {
+        @BindingAdapter("imageFromUrl")
+        @JvmStatic
+        fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
+            if (!imageUrl.isNullOrEmpty()) {
+                Glide.with(view.context)
+                    .load(imageUrl)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(view)
+            } else {
+                view.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.item_test_image))
+            }
+        }
     }
 }
