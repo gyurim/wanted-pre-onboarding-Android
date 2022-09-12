@@ -10,4 +10,6 @@
     <color name="item_news_title_black">#0E0E2C</color>
     <color name="item_news_author_black">#212124</color>
     <color name="item_news_time_gray">#AFAFAF</color>
+    <color name="saved_icon_non_selected_white">#FFFFFF</color>
+    <color name="saved_icon_selected_yellow">#FFCE31</color>
 </resources>

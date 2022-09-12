@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val mainViewModel : MainViewModel by viewModels()
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
@@ -36,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.menu_top_news, R.id.menu_categories, R.id.menu_saved)
         )
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.mainToolbar)
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         binding.bottomNavigation.setupWithNavController(navController)
     }
