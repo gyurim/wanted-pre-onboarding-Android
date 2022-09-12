@@ -16,6 +16,7 @@ import com.codelab.newsapplication.databinding.FragmentTopNewsBinding
 import com.codelab.newsapplication.model.Article
 import com.codelab.newsapplication.ui.ArticleDetailActivity
 import com.codelab.newsapplication.util.NetworkResult
+import com.codelab.newsapplication.util.VerticalItemDecorator
 import com.codelab.newsapplication.viewmodel.MainViewModel
 import com.codelab.newsapplication.viewmodel.TopNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,6 +42,7 @@ class TopNewsFragment : Fragment() {
         binding.mainViewModel = mainViewModel
         binding.topNewsViewModel = topNewsViewModel
         binding.topNewsRecyclerview.adapter = topNewsAdapter
+        binding.topNewsRecyclerview.addItemDecoration(VerticalItemDecorator(17))
 
         observeLiveData()
 
@@ -81,6 +83,7 @@ class TopNewsFragment : Fragment() {
         val intent = Intent(this.context, ArticleDetailActivity::class.java)
         return object : TopNewsAdapter.OnItemClickListener {
             override fun onItemClick(article: Article) {
+                intent.putExtra(ArticleDetailActivity.EXTRA_ARTICLE_DATA, article)
                 startActivity(intent)
             }
         }

@@ -11,7 +11,7 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ui.fragment.TopNewsFragment"
         android:background="@color/white">
@@ -24,7 +24,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_article"/>
+            tools:listitem="@layout/item_article"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginEnd="@dimen/end_margin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

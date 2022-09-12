@@ -6,6 +6,9 @@
 
     <data>
         <variable
+            name="articleDetailViewModel"
+            type="" />
+        <variable
             name="articleItem"
             type="com.codelab.newsapplication.model.Article" />
     </data>
@@ -18,59 +21,90 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/article_detail_toolbar"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_700"
+            android:textSize="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="wrap_content"
-            app:title="@{articleItem.title}"
-            android:background="@color/purple_700"
-            android:textSize="24dp"/>
+            app:title="@{articleItem.title}" />
 
         <TextView
             android:id="@+id/article_detail_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/article_detail_toolbar"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="19dp"
+            android:text="@{articleItem.title}"
+            android:textColor="@color/item_news_title_black"
             android:textSize="16dp"
-            android:textColor="@color/item_news_title_black"/>
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/article_detail_toolbar" />
 
         <ImageButton
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            app:layout_constraintStart_toEndOf="@id/article_detail_title"
+            android:id="@+id/imageButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/selector_icon_saved_article"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/article_detail_title"
             app:layout_constraintTop_toBottomOf="@id/article_detail_toolbar"
-            android:background="@drawable/selector_icon_saved_article"/>
+            android:layout_marginEnd="@dimen/end_margin"/>
 
         <TextView
             android:id="@+id/article_detail_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/article_detail_title"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="14dp"
+            android:text="@{articleItem.author}"
+            android:textColor="@color/item_news_author_black"
+            android:textSize="14dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:textColor="@color/item_news_author_black"/>
+            app:layout_constraintTop_toBottomOf="@id/article_detail_title" />
 
         <TextView
             android:id="@+id/article_detail_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="14dp"
+            android:text="@{articleItem.publishedAt}"
+            android:textColor="@color/item_news_time_gray"
+            android:textSize="14dp"
             app:layout_constraintStart_toEndOf="@id/article_detail_author"
-            app:layout_constraintTop_toBottomOf="@id/article_detail_title"
-            android:textColor="@color/item_news_time_gray"/>
+            app:layout_constraintTop_toBottomOf="@id/article_detail_title" />
 
         <ImageView
             android:id="@+id/article_detail_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/article_detail_author"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/end_margin"
+            android:background="@drawable/rounded_corner_image"
+            app:imageFromUrl="@{articleItem.urlToImage}"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/rounded_corner_image"/>
+            app:layout_constraintTop_toBottomOf="@id/article_detail_author" />
 
         <TextView
             android:id="@+id/article_detail_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/article_detail_image"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/end_margin"
+            android:text="@{articleItem.content}"
+            android:textColor="@color/item_news_content_black"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/article_detail_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
