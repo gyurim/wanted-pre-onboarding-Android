@@ -93,11 +93,6 @@ class CategoryListActivity : AppCompatActivity()  {
             }
         }
     }
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
-
 
     companion object {
         const val EXTRA_CATEGORY_TITLE_DATA = "category_title_data"

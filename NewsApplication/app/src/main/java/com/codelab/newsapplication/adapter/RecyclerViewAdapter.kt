@@ -1,5 +1,6 @@
 package com.codelab.newsapplication.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -30,7 +31,7 @@ class RecyclerViewAdapter(private val itemClickListener: OnItemClickListener) : 
         val item = articles[position]
         holder.bindTo(item)
         holder.itemView.setOnClickListener {
-            item?.let { itemClickListener.onItemClick(it) }
+            item.let { itemClickListener.onItemClick(it) }
         }
     }
 
@@ -42,6 +43,16 @@ class RecyclerViewAdapter(private val itemClickListener: OnItemClickListener) : 
         val diffUtil = BaseDiffUtil(articles, newsItem.articles)
         val diffUtilResult = DiffUtil.calculateDiff(diffUtil)
         articles = newsItem.articles
+
+        val list: MutableList<Article> = mutableListOf<Article>()
+
+        newsItem.articles.forEach {
+            if (!it.urlToImage.isNullOrEmpty()) {
+                list.add(it)
+            }
+        }
+
+        articles = list
         diffUtilResult.dispatchUpdatesTo(this)
     }
 
@@ -55,6 +66,7 @@ class RecyclerViewAdapter(private val itemClickListener: OnItemClickListener) : 
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(view)
             } else {
+                Log.d("imageFromUrl", imageUrl.toString())
                 view.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.item_failed_image))
             }
         }
