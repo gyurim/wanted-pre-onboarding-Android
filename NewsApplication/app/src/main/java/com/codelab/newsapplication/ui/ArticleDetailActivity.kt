@@ -38,9 +38,6 @@ class ArticleDetailActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-
-        // 기사의 저장 유무 확인
-        // observer 를 확인해 db 먼저 접근해서 저장되어 있는지 확인해보고 없으면 버튼 안 눌린 상태
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

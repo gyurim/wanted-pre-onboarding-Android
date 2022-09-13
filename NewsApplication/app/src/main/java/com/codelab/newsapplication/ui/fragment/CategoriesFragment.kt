@@ -22,7 +22,6 @@ class CategoriesFragment : Fragment() {
     ): View? {
         val binding: FragmentCategoriesBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false)
         return binding.root
-//        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onDestroyView() {
