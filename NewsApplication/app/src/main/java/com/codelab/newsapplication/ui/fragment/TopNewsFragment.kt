@@ -17,14 +17,12 @@ import com.codelab.newsapplication.model.Article
 import com.codelab.newsapplication.ui.ArticleDetailActivity
 import com.codelab.newsapplication.util.NetworkResult
 import com.codelab.newsapplication.util.VerticalItemDecorator
-import com.codelab.newsapplication.viewmodel.MainViewModel
 import com.codelab.newsapplication.viewmodel.TopNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class TopNewsFragment : Fragment() {
-    private val mainViewModel: MainViewModel by viewModels()
     private val topNewsViewModel: TopNewsViewModel by viewModels()
     private val topNewsAdapter by lazy { TopNewsAdapter(onItemClickListener()) }
 
@@ -39,7 +37,6 @@ class TopNewsFragment : Fragment() {
         _binding = FragmentTopNewsBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = this
-        binding.mainViewModel = mainViewModel
         binding.topNewsViewModel = topNewsViewModel
         binding.topNewsRecyclerview.adapter = topNewsAdapter
         binding.topNewsRecyclerview.addItemDecoration(VerticalItemDecorator(17))
@@ -62,8 +59,8 @@ class TopNewsFragment : Fragment() {
 
     private fun getNews(){
         lifecycleScope.launch {
-            mainViewModel.getNews(getQueries())
-            mainViewModel.newsList.observe(viewLifecycleOwner, { response ->
+            topNewsViewModel.getNews(getQueries())
+            topNewsViewModel.newsList.observe(viewLifecycleOwner, { response ->
                 when (response) {
                     is NetworkResult.Success -> {
                         response.data?.let {

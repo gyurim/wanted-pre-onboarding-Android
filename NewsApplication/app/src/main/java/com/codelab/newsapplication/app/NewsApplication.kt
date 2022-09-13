@@ -8,5 +8,11 @@ import dagger.hilt.android.HiltAndroidApp
 class NewsApplication : Application() {
     override fun onCreate() {
         super.onCreate() // 의존성 주입 이루어짐 (bytecode 변환)
+        instance = this
+    }
+
+    companion object {
+        lateinit var instance: NewsApplication
+            private set
     }
 }

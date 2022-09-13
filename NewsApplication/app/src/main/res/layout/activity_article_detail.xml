@@ -7,7 +7,7 @@
     <data>
         <variable
             name="articleDetailViewModel"
-            type="" />
+            type="com.codelab.newsapplication.viewmodel.ArticleDetailViewModel" />
         <variable
             name="articleItem"
             type="com.codelab.newsapplication.model.Article" />
@@ -37,25 +37,27 @@
             android:text="@{articleItem.title}"
             android:textColor="@color/item_news_title_black"
             android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintEnd_toStartOf="@+id/savedButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/article_detail_toolbar" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/savedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginTop="19dp"
-            android:background="@drawable/selector_icon_saved_article"
+            android:background="@android:color/transparent"
+            android:src="@drawable/selector_icon_saved_article"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/article_detail_title"
             app:layout_constraintTop_toBottomOf="@id/article_detail_toolbar"
-            android:layout_marginEnd="@dimen/end_margin"/>
+            android:layout_marginEnd="@dimen/end_margin"
+            android:onClick="@{()->articleDetailViewModel.savedArticle(articleItem)}"/>
 
         <TextView
             android:id="@+id/article_detail_author"

@@ -1,5 +1,6 @@
-package com.codelab.newsapplication.network
+package com.codelab.newsapplication.di
 
+import com.codelab.newsapplication.network.NewsApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
