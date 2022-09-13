@@ -2,4 +2,6 @@
 <resources>
     <dimen name="start_margin">16dp</dimen>
     <dimen name="end_margin">16dp</dimen>
+    <dimen name="categories_end_margin">29dp</dimen>
+    <dimen name="categories_bottom_margin">36dp</dimen>
 </resources>

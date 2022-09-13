@@ -1,7 +1,11 @@
 package com.codelab.newsapplication.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.*
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.codelab.newsapplication.BuildConfig
 import com.codelab.newsapplication.data.NewsRepository
 import com.codelab.newsapplication.model.News
 import com.codelab.newsapplication.util.NetworkResult
@@ -10,21 +14,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TopNewsViewModel @Inject constructor (
+class CategoryListViewModel  @Inject constructor (
     private val repository: NewsRepository
-) : ViewModel(){
-
-    // RemoteData
+) : ViewModel() {
     private val _newsList: MutableLiveData<NetworkResult<News>> = MutableLiveData()
     val newsList: LiveData<NetworkResult<News>> = _newsList
 
-    fun getNews(queries: Map<String, String>) = viewModelScope.launch {
-        getNewsSafeCall(queries)
+    fun getCategoryNews(category: String) = viewModelScope.launch {
+        getCategoryNewSafeCall(category)
     }
 
-    private suspend fun getNewsSafeCall(queries: Map<String, String>) {
+    private suspend fun getCategoryNewSafeCall(category: String){
         try {
-            val response = repository.remote.getNews(queries)
+            val response = repository.remote.getCategoryNews(country = "us", category= category, apiKey = BuildConfig.NEWS_API_KEY)
             if (response.body() != null) {
                 _newsList.value = NetworkResult.Success(response.body())
             }

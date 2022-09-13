@@ -1,6 +1,5 @@
 package com.codelab.newsapplication.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -18,16 +17,16 @@ import com.codelab.newsapplication.model.News
 import com.codelab.newsapplication.util.BaseDiffUtil
 import java.text.SimpleDateFormat
 
-class TopNewsAdapter(private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<TopNewsViewHolder>() {
+class RecyclerViewAdapter(private val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerViewHolder>() {
     private var articles = emptyList<Article>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopNewsViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemArticleBinding.inflate(inflater, parent, false)
-        return TopNewsViewHolder(binding)
+        return RecyclerViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TopNewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         val item = articles[position]
         holder.bindTo(item)
         holder.itemView.setOnClickListener {

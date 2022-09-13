@@ -1,16 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="categoriesFragment"
+            type="com.codelab.newsapplication.ui.fragment.CategoriesFragment" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.fragment.CategoriesFragment"
-        android:background="@color/white">
+        android:background="@color/white"
+        tools:context=".ui.fragment.CategoriesFragment">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="categories"/>
+            android:id="@+id/categories_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginTop="16dp"
+            android:paddingBottom="@dimen/categories_bottom_margin"
+            android:text="@string/category_title"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/categories_business_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:src="@drawable/icon_business_button"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toStartOf="@+id/categories_entertain_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categories_title"
+            android:paddingBottom="@dimen/categories_bottom_margin"
+            android:onClick="@{categoriesFragment::clickCategoryButton}"/>
+
+        <ImageButton
+            android:id="@+id/categories_entertain_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_entertain_button"
+            app:layout_constraintEnd_toStartOf="@+id/categories_general_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/categories_business_button"
+            app:layout_constraintTop_toBottomOf="@id/categories_title"
+            android:onClick="@{categoriesFragment::clickCategoryButton}"/>
+
+        <ImageButton
+            android:id="@+id/categories_general_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/end_margin"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_general_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/categories_entertain_button"
+            app:layout_constraintTop_toBottomOf="@id/categories_title"
+            android:onClick="@{categoriesFragment::clickCategoryButton}"/>
+
+        <ImageButton
+            android:id="@+id/categories_health_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_health_button"
+            app:layout_constraintEnd_toStartOf="@+id/categories_science_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categories_business_button"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            android:paddingBottom="@dimen/categories_bottom_margin"
+            android:onClick="@{categoriesFragment::clickCategoryButton}"/>
+
+        <ImageButton
+            android:id="@+id/categories_science_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_science_button"
+            app:layout_constraintEnd_toStartOf="@+id/categories_sports_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/categories_health_button"
+            app:layout_constraintTop_toBottomOf="@id/categories_business_button"
+            android:onClick="@{categoriesFragment::clickCategoryButton}"/>
+
+        <ImageButton
+            android:id="@+id/categories_sports_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/end_margin"
+            android:background="@android:color/transparent"
+            android:src="@drawable/icon_sports_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/categories_science_button"
+            app:layout_constraintTop_toBottomOf="@id/categories_business_button"
+            android:onClick="@{categoriesFragment::clickCategoryButton}"/>
+
+        <ImageButton
+            android:id="@+id/categories_technology_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_technology_button"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categories_health_button"
+            android:layout_marginStart="@dimen/start_margin"
+            android:onClick="@{categoriesFragment::clickCategoryButton}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
