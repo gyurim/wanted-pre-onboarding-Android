@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.codelab.newsapplication.R
+import com.codelab.newsapplication.data.entities.ArticlesEntity
 import com.codelab.newsapplication.databinding.ItemArticleBinding
 import com.codelab.newsapplication.model.Article
 import com.codelab.newsapplication.model.News
@@ -54,6 +55,17 @@ class RecyclerViewAdapter(private val itemClickListener: OnItemClickListener) : 
 
         articles = list
         diffUtilResult.dispatchUpdatesTo(this)
+    }
+
+    fun setSavedItem(articlesList: List<ArticlesEntity>) {
+        val list: MutableList<Article> = mutableListOf<Article>()
+        articlesList.forEach {
+            if (!it.urlToImage.isNullOrEmpty()) {
+                val article = Article(it.title, it.content, it.urlToImage, it.publishedAt, it.author)
+                list.add(article)
+            }
+        }
+        articles = list
     }
 
     companion object {
