@@ -9,18 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.codelab.newsapplication.R
-import com.codelab.newsapplication.data.entities.ArticlesEntity
 import com.codelab.newsapplication.databinding.ActivityArticleDetailBinding
-import com.codelab.newsapplication.databinding.ActivityMainBinding
 import com.codelab.newsapplication.model.Article
 import com.codelab.newsapplication.viewmodel.ArticleDetailViewModel
-import com.codelab.newsapplication.viewmodel.TopNewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ArticleDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityArticleDetailBinding
     private val articleDetailViewModel: ArticleDetailViewModel by viewModels()
+    private var articleTitle : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +35,7 @@ class ArticleDetailActivity : AppCompatActivity() {
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
+            title = articleTitle
         }
     }
 
@@ -58,6 +57,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             binding.articleDetailImage.clipToOutline = true
             articleDetailViewModel.articleTitle = article.title
             articleDetailViewModel.isExistArticle(article.title)
+            articleTitle = article.title
             checkSavedArticle()
         } else {
             binding.articleItem = Article("", resources.getString(R.string.failed_to_load_article), "", "", "")

@@ -3,6 +3,7 @@ package com.codelab.newsapplication.ui
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ class CategoryListActivity : AppCompatActivity()  {
     private val categoryListAdapter by lazy { RecyclerViewAdapter(onItemClickListener()) }
 
     private lateinit var binding: ActivityCategoryListBinding
+    private var categoryTitle : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?){
         Log.d("CategoryListActivity", "onCreate")
@@ -30,14 +32,37 @@ class CategoryListActivity : AppCompatActivity()  {
         binding.categoryListRecyclerview.adapter = categoryListAdapter
         binding.categoryListRecyclerview.addItemDecoration(VerticalItemDecorator(17))
         setContentView(binding.root)
+
         // Get Intent
         getIntentValue()
+
+        setToolbar()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            } else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setToolbar(){
+        setSupportActionBar(binding.categoryListToolbar)
+
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+            title = "Category - $categoryTitle"
+        }
     }
 
     private fun getIntentValue(){
         val category = intent.getStringExtra(EXTRA_CATEGORY_TITLE_DATA)
         if (category != null) {
             getCategoryList(category)
+            categoryTitle = category.substring(0, 1).uppercase() + category.substring(1)
         }
     }
 

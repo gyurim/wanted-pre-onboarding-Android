@@ -26,7 +26,7 @@
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@{articleItem.title}" />
+            app:title="@{articleItem.title}"/>
 
         <TextView
             android:id="@+id/article_detail_title"
