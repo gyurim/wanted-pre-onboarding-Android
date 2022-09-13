@@ -1,17 +1,13 @@
 package com.codelab.newsapplication.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import com.codelab.newsapplication.BuildConfig
 import com.codelab.newsapplication.R
 import com.codelab.newsapplication.databinding.ActivityMainBinding
-import com.codelab.newsapplication.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,9 +21,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val mainViewModel : MainViewModel by viewModels()
         binding.lifecycleOwner = this
-        binding.mainViewModel = mainViewModel
 
         // Bottom Navigation
         val navHostFragment = supportFragmentManager.findFragmentById(

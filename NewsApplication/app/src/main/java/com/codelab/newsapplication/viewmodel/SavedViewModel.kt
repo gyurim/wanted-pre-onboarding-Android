@@ -3,7 +3,6 @@ package com.codelab.newsapplication.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
 import com.codelab.newsapplication.data.NewsRepository
 import com.codelab.newsapplication.data.entities.ArticlesEntity
 import dagger.hilt.android.lifecycle.HiltViewModel

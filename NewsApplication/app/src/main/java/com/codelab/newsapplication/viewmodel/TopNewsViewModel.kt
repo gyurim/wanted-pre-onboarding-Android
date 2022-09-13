@@ -1,6 +1,5 @@
 package com.codelab.newsapplication.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.*
 import com.codelab.newsapplication.data.NewsRepository
 import com.codelab.newsapplication.model.News

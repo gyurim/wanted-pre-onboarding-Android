@@ -8,8 +8,6 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor (
     private val articlesDao: ArticlesDao
 ){
-//    private val articlesDao = articlesDatabase.articlesDao()
-
     fun getArticles(): Flow<List<ArticlesEntity>> {
         return articlesDao.getArticles()
     }

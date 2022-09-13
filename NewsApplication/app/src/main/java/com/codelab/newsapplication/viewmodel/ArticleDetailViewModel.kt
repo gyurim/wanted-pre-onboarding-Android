@@ -1,7 +1,6 @@
 package com.codelab.newsapplication.viewmodel
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.*
 import com.codelab.newsapplication.data.NewsRepository
 import com.codelab.newsapplication.data.entities.ArticlesEntity
@@ -22,7 +21,6 @@ class ArticleDetailViewModel @Inject constructor(
     var saveStatus: LiveData<Boolean> = _saveStatus
 
     fun savedArticle(article: Article){
-        Log.d("button", "clicked")
         viewModelScope.launch {
             if(_saveStatus.value == false) {
                 val entity = ArticlesEntity(title = article.title, author = article.author, publishedAt = article.publishedAt, content = article.content, urlToImage = article.urlToImage)

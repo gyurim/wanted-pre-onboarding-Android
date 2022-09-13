@@ -6,14 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.codelab.newsapplication.R
 import com.codelab.newsapplication.adapter.RecyclerViewAdapter
 import com.codelab.newsapplication.databinding.FragmentSavedBinding
-import com.codelab.newsapplication.databinding.FragmentTopNewsBinding
 import com.codelab.newsapplication.model.Article
 import com.codelab.newsapplication.ui.ArticleDetailActivity
 import com.codelab.newsapplication.util.VerticalItemDecorator

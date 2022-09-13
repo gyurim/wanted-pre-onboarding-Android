@@ -1,12 +1,10 @@
 package com.codelab.newsapplication.ui
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.codelab.newsapplication.R
 import com.codelab.newsapplication.databinding.ActivityArticleDetailBinding
@@ -31,20 +29,11 @@ class ArticleDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.articleDetailToolbar)
 
-        // toolbar 속 뒤로가기 버튼 생성
+        // toolbar 속 back button 생성
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             title = articleTitle
-        }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            } else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -56,6 +45,7 @@ class ArticleDetailActivity : AppCompatActivity() {
             binding.articleItem = article
             binding.articleDetailImage.clipToOutline = true
             articleDetailViewModel.articleTitle = article.title
+
             articleDetailViewModel.isExistArticle(article.title)
             articleTitle = article.title
             checkSavedArticle()
@@ -75,6 +65,16 @@ class ArticleDetailActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            // back button
+            android.R.id.home -> {
+                finish()
+                true
+            } else -> super.onOptionsItemSelected(item)
+        }
     }
 
     companion object {

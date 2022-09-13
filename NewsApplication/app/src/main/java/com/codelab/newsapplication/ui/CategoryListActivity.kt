@@ -24,8 +24,8 @@ class CategoryListActivity : AppCompatActivity()  {
     private var categoryTitle : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?){
-        Log.d("CategoryListActivity", "onCreate")
         super.onCreate(savedInstanceState)
+
         binding = ActivityCategoryListBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         binding.categoryListViewModel = categoryListViewModel
@@ -33,19 +33,8 @@ class CategoryListActivity : AppCompatActivity()  {
         binding.categoryListRecyclerview.addItemDecoration(VerticalItemDecorator(17))
         setContentView(binding.root)
 
-        // Get Intent
         getIntentValue()
-
         setToolbar()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            } else -> super.onOptionsItemSelected(item)
-        }
     }
 
     private fun setToolbar(){
@@ -91,6 +80,15 @@ class CategoryListActivity : AppCompatActivity()  {
                 intent.putExtra(ArticleDetailActivity.EXTRA_ARTICLE_DATA, article)
                 startActivity(intent)
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            } else -> super.onOptionsItemSelected(item)
         }
     }
 

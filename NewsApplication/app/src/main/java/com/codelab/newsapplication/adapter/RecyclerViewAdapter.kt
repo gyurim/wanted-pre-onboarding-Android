@@ -52,7 +52,6 @@ class RecyclerViewAdapter(private val itemClickListener: OnItemClickListener) : 
                 list.add(it)
             }
         }
-
         articles = list
         diffUtilResult.dispatchUpdatesTo(this)
     }

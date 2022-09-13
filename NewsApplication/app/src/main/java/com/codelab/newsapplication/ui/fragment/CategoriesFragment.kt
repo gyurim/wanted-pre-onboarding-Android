@@ -7,17 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.codelab.newsapplication.R
 import com.codelab.newsapplication.databinding.FragmentCategoriesBinding
 import com.codelab.newsapplication.ui.CategoryListActivity
-import com.codelab.newsapplication.viewmodel.CategoriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CategoriesFragment : Fragment() {
-    private val categoriesFragmentViewModel: CategoriesViewModel by viewModels()
-
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
 
