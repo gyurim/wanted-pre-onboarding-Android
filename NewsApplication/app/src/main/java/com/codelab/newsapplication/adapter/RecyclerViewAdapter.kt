@@ -1,5 +1,6 @@
 package com.codelab.newsapplication.adapter
 
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.GranularRoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.codelab.newsapplication.R
 import com.codelab.newsapplication.data.entities.ArticlesEntity
@@ -74,10 +76,25 @@ class RecyclerViewAdapter(private val itemClickListener: OnItemClickListener) : 
             if (!imageUrl.isNullOrEmpty()) {
                 Glide.with(view.context)
                     .load(imageUrl)
+                    .transform(GranularRoundedCorners(75f, 75f, 0f, 0f))
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(view)
             } else {
                 Log.d("imageFromUrl", imageUrl.toString())
+                view.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.item_failed_image))
+            }
+        }
+
+        @BindingAdapter("bindDetailImageFromUrl")
+        @JvmStatic
+        fun bindDetailImageFromUrl(view: ImageView, imageUrl: String?) {
+            if (!imageUrl.isNullOrEmpty()) {
+                Glide.with(view.context)
+                    .load(imageUrl)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(view)
+            } else {
+                Log.d("bindDetailImageFromUrl", imageUrl.toString())
                 view.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.item_failed_image))
             }
         }

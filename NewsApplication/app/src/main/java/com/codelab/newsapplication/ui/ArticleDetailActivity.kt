@@ -14,19 +14,20 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ArticleDetailActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityArticleDetailBinding
     private val articleDetailViewModel: ArticleDetailViewModel by viewModels()
     private var articleTitle : String = ""
+
+    private lateinit var binding: ActivityArticleDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityArticleDetailBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
+
         binding.articleDetailViewModel = articleDetailViewModel
+        setContentView(binding.root)
 
         getIntentValue()
-
-        setContentView(binding.root)
         setSupportActionBar(binding.articleDetailToolbar)
 
         // toolbar 속 back button 생성
@@ -38,19 +39,21 @@ class ArticleDetailActivity : AppCompatActivity() {
     }
 
     private fun getIntentValue(){
-        val article = intent.getParcelableExtra<Article>(EXTRA_ARTICLE_DATA)
+        if (intent.hasExtra(EXTRA_ARTICLE_DATA)) {
+            val article = intent.getParcelableExtra<Article>(EXTRA_ARTICLE_DATA)
 
-        if (article != null) {
-            Log.d("article", article.title)
-            binding.articleItem = article
-            binding.articleDetailImage.clipToOutline = true
-            articleDetailViewModel.articleTitle = article.title
+            if (article != null) {
+                Log.d("article", article.title)
+                binding.articleItem = article
+                binding.articleDetailImage.clipToOutline = true
+                articleDetailViewModel.articleTitle = article.title
 
-            articleDetailViewModel.isExistArticle(article.title)
-            articleTitle = article.title
-            checkSavedArticle()
-        } else {
-            binding.articleItem = Article("", resources.getString(R.string.failed_to_load_article), "", "", "")
+                articleDetailViewModel.isExistArticle(article.title)
+                articleTitle = article.title
+                checkSavedArticle()
+            } else {
+                binding.articleItem = Article("", resources.getString(R.string.failed_to_load_article), "", "", "")
+            }
         }
     }
 
