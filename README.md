@@ -32,6 +32,7 @@
 - Glide
 ### Network
 - Retrofit2
+- Coroutine
 
 # Architecture 💡
 ### adapter
